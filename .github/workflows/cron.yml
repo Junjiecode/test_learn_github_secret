@@ -10,6 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       GSPREAD_API_CREDENTIALS_INFO: ${{ secrets.GSPREAD_API_CREDENTIALS_INFO }}
+      GOOGLE_ADS_API_KEY : ${{ secrets.GOOGLE_ADS_API_KEY }}
 
     steps:
       - uses: actions/checkout@v4
@@ -30,7 +31,17 @@ jobs:
           else
             echo "Secret is set, length: ${#GSPREAD_API_CREDENTIALS_INFO}"
           fi
-      
+
+
+      - name: Debug - Check if secret exists 2 google ads api key
+        run: |
+          if [ -z "$GOOGLE_ADS_API_KEY" ]; then
+            echo "Secret is NOT set"
+          else
+            echo "Secret is set, length: ${#GOOGLE_ADS_API_KEY}"
+          fi
+          
+          
       - name: Run Jupyter Notebook
         run: |
           jupyter nbconvert --to notebook --execute code.ipynb
