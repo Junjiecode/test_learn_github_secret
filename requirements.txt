@@ -2,4 +2,6 @@ pandas
 numpy
 gspread
 oauth2client
-google.ads 
+google-ads 
+jupyter
+nbconvert
