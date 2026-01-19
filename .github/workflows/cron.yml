@@ -29,4 +29,4 @@ jobs:
 
       - name: Display Output Notebook
         run: |
-          jupyter nbconvert --to markdown code.ipynb --stdout
+          jupyter nbconvert --to markdown code.nbconvert.ipynb --stdout
