@@ -6,17 +6,23 @@ on:
     - cron: "0 * * * *"   # optional: every hour
 
 jobs:
-  test-secret:
+  run-notebook:
     runs-on: ubuntu-latest
     env:
       GSPREAD_API_CREDENTIALS_INFO: ${{ secrets.GSPREAD_API_CREDENTIALS_INFO }}
+
     steps:
       - uses: actions/checkout@v4
 
-      - name: Show that secret is loaded
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
         run: |
-          if [ -z "$GSPREAD_API_CREDENTIALS_INFO" ]; then
-            echo "Secret is NOT set"; exit 1
-          else
-            echo "Secret is present, length: ${#GSPREAD_API_CREDENTIALS_INFO}"
-          fi
+          pip install jupyter nbconvert gspread oauth2client pandas numpy
+      
+      - name: Run Jupyter Notebook
+        run: |
+          jupyter nbconvert --to notebook --execute path/to/your_notebook.ipynb
