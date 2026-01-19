@@ -17,9 +17,9 @@ jobs:
 
       - name: Set up Python
         uses: actions/setup-python@v5
-        with:
+        wi
           python-version: '3.11'
-
+ 
       - name: Install dependencies
         run: |
           pip install -r requirements.txt
