@@ -22,7 +22,7 @@ jobs:
 
       - name: Install dependencies
         run: |
-          pip install jupyter nbconvert gspread oauth2client pandas numpy
+          pip install -r requirements.txt
 
       - name: Debug - Check if secret exists
         run: |
