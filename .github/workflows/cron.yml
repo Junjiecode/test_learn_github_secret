@@ -2,8 +2,6 @@ name: Test GSpread Secret
 # test junjie : run in local vs code      
 on:
   workflow_dispatch:      # so you can trigger it manually
-  schedule:
-    - cron: "0 * * * *"   # optional: every hour
 
 jobs:
   run-notebook:
